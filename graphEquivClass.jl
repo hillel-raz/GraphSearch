@@ -12,12 +12,11 @@ end
 # helper function that returns dictionary with keys being graphs
 # and values being graph equivalency class 
 function equivClassDict()
-    equivClass = 0
-    classDict = Dict()
+    global equivClass = 0
+    global classDict = Dict()
     i=0
-    for i=0:(2^10)-1
-        Istring= string(i, base = 2, pad = 10)#bitstring of length 10 for i
-        print(IString)
+    for i=0:2
+        global Istring= string(i, base = 2, pad = 10)#bitstring of length 10 for i
 
         #set currGraph based on said string
         currGraph=falses(1,10)
@@ -26,7 +25,6 @@ function equivClassDict()
                 currGraph[j]= 1
             end
         end
-        print(currGraph)
 
         if(!haskey(classDict,currGraph)) #if haven't dealt with this graph yet
             #add graph and all its' permutations to dictionary
@@ -42,10 +40,7 @@ end
 
 # helper function that adds all permutations of given graph to given dictionary
 function addPermutations(graph, equivClass, dictionary)
-    #get all possible permutations
-    permutations=collect(permutations([1,2,3,4,5]))
-
-    for currPermutation in permutations
+    for currPermutation in collect(permutations([1,2,3,4,5]))
     #TODO: check how each permutation affects given graph
         
     end
