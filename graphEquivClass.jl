@@ -15,7 +15,7 @@ function equivClassDict()
     global equivClass = 0
     global classDict = Dict()
     i=0
-    for i=0:2
+    for i=0:(2^10)-1
         global Istring= string(i, base = 2, pad = 10)#bitstring of length 10 for i
 
         #set currGraph based on said string
