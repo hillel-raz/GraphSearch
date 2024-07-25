@@ -41,7 +41,34 @@ end
 # helper function that adds all permutations of given graph to given dictionary
 function addPermutations(graph, equivClass, dictionary)
     for currPermutation in collect(permutations([1,2,3,4,5]))
-    #TODO: check how each permutation affects given graph
         
+    end
+end
+
+#helper function that given an index in bitArray gives the edge it represents
+function getEdge(index)
+    edge= Set{Int8}()
+    if index<=4
+        edge=push!(edge,1,(index+1))
+
+    elseif (5<=index && index<=7)
+        edge=push!(edge,2,(index-2))
+
+    elseif (index==8||index==9)
+        edge=push!(edge,3,(index-4))
+
+    elseif index==10
+        edge=push!(edge,4,5)
+    end
+    return edge
+end
+
+#helper function that given an edge of a graph gives the index in bitArray for it
+function getIndex(edge)
+    i=1
+    for i=1:10
+        if issetequal(edge, getEdge(i))
+            return i
+        end
     end
 end
