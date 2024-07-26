@@ -40,8 +40,29 @@ end
 
 # helper function that adds all permutations of given graph to given dictionary
 function addPermutations(graph, equivClass, dictionary)
+    permsOnGraph=Array{Union{Nothing, BitArray}}(nothing, 1, 2)
+    i=1;
     for currPermutation in collect(permutations([1,2,3,4,5]))
-        
+        permsOnGraph[i]=falses(1,10)
+        global j=1
+        for j=1:10
+            if graph[j]==1 #if this edge exists in original graph
+                edge= getEdge(j)
+                firstVertice= pop!(edge)
+                secondVertice= pop!(edge)
+
+                #get edge equiv to original edge under currPermutation
+                firstVertice= currPermutation[firstVertice]
+                secondVertice= currPermutation[secondVertice]
+                edge= push!(edge,firstVertice,secondVertice)
+                index= getIndex(edge)
+
+                #set it as existing
+                permsOnGraph[i][index]=1
+            end
+        end
+        dictionary[permsOnGraph[i]]=equivClass
+        i+=1
     end
 end
 
