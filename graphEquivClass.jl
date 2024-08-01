@@ -28,7 +28,6 @@ function equivClassDict()
 
         if(!haskey(classDict,currGraph)) #if haven't dealt with this graph yet
             #add graph and all its' permutations to dictionary
-            classDict[currGraph]=equivClass
             addPermutations(currGraph, equivClass, classDict)
             #set equivalence class for next new graph
             equivClass += 1
@@ -40,7 +39,7 @@ end
 
 # helper function that adds all permutations of given graph to given dictionary
 function addPermutations(graph, equivClass, dictionary)
-    permsOnGraph=Array{Union{Nothing, BitArray}}(nothing, 1, 2)
+    permsOnGraph=Array{Union{Nothing, BitArray}}(nothing, 1, 120)
     i=1;
     for currPermutation in collect(permutations([1,2,3,4,5]))
         permsOnGraph[i]=falses(1,10)
