@@ -33,7 +33,6 @@ function equivClassDict()
             equivClass += 1
         end
     end
-    println(equivClass) #sanity check- this should be 34
     return(classDict)
 end
 
